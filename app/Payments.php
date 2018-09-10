@@ -2,9 +2,9 @@
 
 namespace App;
 
-use \App\Modelo;
+use Illuminate\Database\Eloquent\Model;
 
-class Payments extends Modelo
+class Payments extends Model
 {
     //
 }

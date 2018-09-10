@@ -12,10 +12,12 @@ class User extends Authenticatable
 {
     protected $rules=[
         'name'=>'required',
-        'email'=>'required|unique|email',
+        'email'=>'required|unique:users,email|email',
         'age'=>'required|numeric|min:18',
         'password'=>'required|confirmed|min:5'
     ];
+    
+    protected $validator;  
     
     use Notifiable;
     use Validation;
@@ -36,4 +38,8 @@ class User extends Authenticatable
     protected $hidden = [
         'password', 'remember_token',
     ];
+    
+    public function favorites() {
+        return $this->hasMany('\App\Favorites');
+    }
 }

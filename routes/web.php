@@ -21,5 +21,7 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('/users', 'UsersController@index')->name('users');
     Route::get('/user/new', 'UsersController@new_form')->name('user/new');
     Route::post('/user','UsersController@create_user')->name('/user');
-            
+    Route::get('/user/{id}','UsersController@edit_form')->name('user/edit');
+    
+    Route::get('/payments','PaymentsController@index')->name('payments');
 });

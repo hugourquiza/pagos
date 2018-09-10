@@ -16,10 +16,11 @@
                     @else
                     <form method="post" action="/user/">
                     @endif
+                    @csrf
                         <div class="form-group">
                             <label>{{__('Name')}}</label>
-                            <input type="text" name="name" class="form-control" required value="{{ old('name') }}">
-                            @if ($errors->has('name'))
+                            <input type="text" name="name" class="form-control" required @if ($edit) value="{{ old('name',$user->name) }}" @else value="{{old('name')}}" @endif>
+                            @if ($errors->messages->has('name'))
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $errors->first('name') }}</strong>
                                     </span>
@@ -27,8 +28,8 @@
                         </div> 
                          <div class="form-group">
                             <label>{{__('Email')}}</label>
-                            <input type="email" name="email" class="form-control" required value="{{ old('email') }}">
-                            @if ($errors->has('email'))
+                            <input type="email" name="email" class="form-control" required @if ($edit) value="{{ old('email',$user->email) }}" @else value="{{ old('email')}}" @endif >
+                            @if ($errors->default->has('email'))
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $errors->first('email') }}</strong>
                                     </span>
@@ -36,7 +37,7 @@
                         </div>
                         <div class="form-group">
                             <label>{{__('Age')}}</label>
-                            <input type="numeric" name="age" class="form-control" required value="{{ old('age') }}">
+                            <input type="numeric" name="age" class="form-control" required @if ($edit) value="{{ old('age',$user->age) }}" @else value="{{ old('age')}}" @endif>
                             @if ($errors->has('email'))
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $errors->first('age') }}</strong>
@@ -61,7 +62,27 @@
                                     </span>
                             @endif
                         </div>
-                    
+                        @if ($edit)
+                        <h5>{{__('Favorite Users')}}</h3>
+                        <table class='table table-striped table-bordered table-hover'>
+                        <thead>
+                            <tr>
+                                <th>&nbsp;</th>
+                                <th>{{__('Name')}}</th>
+                                <th>{{__('Email')}}</th>
+                                <th>{{__('Age')}}</th>
+                            </tr>
+                        </thead>
+                        @foreach($user->favorites as $fav)
+                        <tr>
+                            <td><a href="/user/{{$fav->other_user->id}}"><i class="fas fa-pencil-alt"></i></td>
+                            <td>{{$fav->other_user->name}}</td>
+                            <td>{{$fav->other_user->email}}</td>
+                            <td>{{$fav->other_user->age}}</td>
+                        </tr>
+                        @endforeach
+                        </table>
+                        @endif
                         <div class="form-group">
                             <button type="submit" class="btn btn-primary">{{__('Save')}}</button>
                             <a href="/users"><button type="button" class="btn btn-secondary">{{__('Cancel')}}</button></a>                                
