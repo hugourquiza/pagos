@@ -12,9 +12,14 @@
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return redirect('/users');
 });
 
 Auth::routes();
 
-Route::get('/home', 'HomeController@index')->name('home');
+Route::group(['middleware' => 'auth'], function () {
+    Route::get('/users', 'UsersController@index')->name('users');
+    Route::get('/user/new', 'UsersController@new_form')->name('user/new');
+    Route::post('/user','UsersController@create_user')->name('/user');
+            
+});

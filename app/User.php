@@ -6,10 +6,19 @@ use Illuminate\Notifications\Notifiable;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 
+use \App\Validation;
+
 class User extends Authenticatable
 {
+    protected $rules=[
+        'name'=>'required',
+        'email'=>'required|unique|email',
+        'age'=>'required|numeric|min:18',
+        'password'=>'required|confirmed|min:5'
+    ];
+    
     use Notifiable;
-
+    use Validation;
     /**
      * The attributes that are mass assignable.
      *
