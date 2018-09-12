@@ -58,4 +58,8 @@ class User extends Authenticatable
         
         return parent::save($options);
     }
+    
+    public function payments() {
+        return $this->hasMany('\App\Payment');
+    }
 }

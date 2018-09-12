@@ -45,9 +45,6 @@ class UsersController extends Controller
             'password'=>'confirmed|required|min:5'
         ]);
         
-        //if($v->fails())
-        //    return redirect()->back()->withInput()->withErrors($v->errors()->toArray());
-        
         $u=new \App\User();
         $u->name=$r->input('name');
         $u->email=$r->input('email');

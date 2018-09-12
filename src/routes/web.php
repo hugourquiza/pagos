@@ -18,9 +18,10 @@ Route::get('/', function () {
 Auth::routes();
 
 Route::group(['middleware' => 'auth'], function () {
+    //Users
     Route::get('/users', 'UsersController@index')->name('users');
     Route::get('/user/new', 'UsersController@new_form')->name('user/new_form');
-    Route::post('/user','UsersController@create_user')->name('/user');
+    Route::post('/user','UsersController@create_user')->name('/user/new');
     Route::post('/user/{id}','UsersController@update_user')->name('/user_edit');            
     Route::get('/user/{id}','UsersController@edit_form')->name('user/edit_form');
     Route::put('/user/favorite',
@@ -29,5 +30,13 @@ Route::group(['middleware' => 'auth'], function () {
     Route::delete('/user/{id}',
             'UsersController@delete_user')
             ->name('user/delete');
+    
+    //Payments
     Route::get('/payments','PaymentsController@index')->name('payments');
+    Route::get('/payment/new',
+            'PaymentsController@new_form')
+            ->name('payment/new_form');
+    Route::post('/payment',
+            'PaymentsController@create_payment')
+            ->name('payment/new');
 });

@@ -1,0 +1,29 @@
+version: '3'
+services:  
+    php:
+        build: ./src
+        image: webdevops/php-apache-dev:7.2 
+        volumes:
+            - "./src:/var/www/"
+            - "./site.conf:/etc/apache2/sites-enabled/site.conf"
+        networks:
+        - app-network
+        ports:
+            - "80:80"
+    db:
+      image: mysql:5.7
+      restart: always
+      # Get environment variables from a file. Note: Open mysql.env to add your config.
+      env_file:
+        - mysql.env
+      # Change this if you want to use a location on the host, or it will use a Docker volume.
+      volumes:
+        - db_data:/var/lib/mysql
+      networks:
+        - app-network
+networks:
+    app-network:
+      driver: bridge
+
+volumes:
+    db_data:        

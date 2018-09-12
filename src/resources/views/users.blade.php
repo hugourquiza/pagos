@@ -6,7 +6,7 @@
         <div class="col-md-8">
             <div class="card">
                 <div class="card-header">{{__('Users')}}</div>
-                <a href="user/new"><button id="create_btn" class="btn btn-primary card-img-top">{{__('Create User')}}</button></a>
+                <a href="/user/new"><button id="create_btn" class="btn btn-primary card-img-top">{{__('Add User')}}</button></a>
                 <div class="card-body">  
                     <table class='table table-striped table-bordered table-hover'>
                         <thead>

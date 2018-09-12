@@ -8,7 +8,7 @@
                 @if ($edit)
                 <div class="card-header">{{__('Edit User')}}</div>
                 @else
-                <div class="card-header">{{__('Create User')}}</div>
+                <div class="card-header">{{__('Add User')}}</div>
                 @endif
                 <div class="card-body">
                     @if ($edit)

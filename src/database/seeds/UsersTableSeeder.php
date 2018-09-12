@@ -17,5 +17,17 @@ class UsersTableSeeder extends Seeder
             'age'=>34,
             'password' => bcrypt('wsxedc32!'),
         ]);
+        DB::table('users')->insert([
+            'name'=>'John Doe',
+            'email' => 'johndoe@gmail.com',
+            'age'=>34,
+            'password' => bcrypt('wsxedc32!'),
+        ]);
+        DB::table('users')->insert([
+            'name'=>'Michael Jackson',
+            'email' => 'mj@gmail.com',
+            'age'=>34,
+            'password' => bcrypt('wsxedc32!'),
+        ]);
     }
 }
