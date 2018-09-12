@@ -1,7 +1,7 @@
 version: '3'
 services:  
     php:
-        build: ./src
+        build: .
         image: webdevops/php-apache-dev:7.2 
         volumes:
             - "./src:/var/www/"
@@ -10,6 +10,7 @@ services:
         - app-network
         ports:
             - "80:80"
+#        command: /startup.sh
     db:
       image: mysql:5.7
       restart: always
