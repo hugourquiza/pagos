@@ -25,7 +25,11 @@ class Payment extends Model
         } else {
             throw new \InvalidArgumentException("Amount not set");
         }
-                
+        $u=\App\User::find($this->user_id);
+        
+        if(!isset($u->id))
+            throw new \InvalidArgumentException("User doesn't exist");
+        
         return parent::save($options);
     }
 }
