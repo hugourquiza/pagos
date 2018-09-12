@@ -20,7 +20,7 @@
                         <div class="form-group">
                             <label>{{__('Name')}}</label>
                             <input type="text" name="name" class="form-control" required @if ($edit) value="{{ old('name',$user->name) }}" @else value="{{old('name')}}" @endif>
-                            @if ($errors->messages->has('name'))
+                            @if ($errors->has('name'))
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $errors->first('name') }}</strong>
                                     </span>
@@ -29,7 +29,7 @@
                          <div class="form-group">
                             <label>{{__('Email')}}</label>
                             <input type="email" name="email" class="form-control" required @if ($edit) value="{{ old('email',$user->email) }}" @else value="{{ old('email')}}" @endif >
-                            @if ($errors->default->has('email'))
+                            @if ($errors->has('email'))
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $errors->first('email') }}</strong>
                                     </span>
@@ -38,7 +38,7 @@
                         <div class="form-group">
                             <label>{{__('Age')}}</label>
                             <input type="numeric" name="age" class="form-control" required @if ($edit) value="{{ old('age',$user->age) }}" @else value="{{ old('age')}}" @endif>
-                            @if ($errors->has('email'))
+                            @if ($errors->has('age'))
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $errors->first('age') }}</strong>
                                     </span>
@@ -46,8 +46,8 @@
                         </div>
                         <div class="form-group">
                             <label>{{__('Password')}}</label>
-                            <input type="password" name="password" class="form-control" required>
-                            @if ($errors->has('email'))
+                            <input type="password" name="password" class="form-control">
+                            @if ($errors->has('password'))
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $errors->first('password') }}</strong>
                                     </span>
@@ -55,39 +55,13 @@
                         </div>
                         <div class="form-group">
                             <label>{{__('Confirm Password')}}</label>
-                            <input type="password" name="password_confirmation" class="form-control" required>
-                            @if ($errors->has('password_confirmation'))
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $errors->first('password') }}</strong>
-                                    </span>
-                            @endif
+                            <input type="password" name="password_confirmation" class="form-control">
                         </div>
-                        @if ($edit)
-                        <h5>{{__('Favorite Users')}}</h3>
-                        <table class='table table-striped table-bordered table-hover'>
-                        <thead>
-                            <tr>
-                                <th>&nbsp;</th>
-                                <th>{{__('Name')}}</th>
-                                <th>{{__('Email')}}</th>
-                                <th>{{__('Age')}}</th>
-                            </tr>
-                        </thead>
-                        @foreach($user->favorites as $fav)
-                        <tr>
-                            <td><a href="/user/{{$fav->other_user->id}}"><i class="fas fa-pencil-alt"></i></td>
-                            <td>{{$fav->other_user->name}}</td>
-                            <td>{{$fav->other_user->email}}</td>
-                            <td>{{$fav->other_user->age}}</td>
-                        </tr>
-                        @endforeach
-                        </table>
-                        @endif
                         <div class="form-group">
                             <button type="submit" class="btn btn-primary">{{__('Save')}}</button>
                             <a href="/users"><button type="button" class="btn btn-secondary">{{__('Cancel')}}</button></a>                                
                         </div>
-                    </form>
+                    </form>            
                 </div>
             </div>
         </div>
